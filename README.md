@@ -1,5 +1,5 @@
 # The Bachelor: Choropleth Island
-A choropleth map in d3 demonstrating attainment of U.S. bachelor's degrees in the U.S.A. with interpolated gradientesque color legend.
+A choropleth map in d3 demonstrating attainment of bachelor's degrees in the U.S.A. with interpolated gradientesque color legend.
 
 ## Demo
 [See the chart here](https://matthieupierce.github.io/the-bachelor-choropleth-island/). 

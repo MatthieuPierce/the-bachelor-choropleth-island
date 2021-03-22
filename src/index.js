@@ -12,7 +12,6 @@ import {
   max,
   scaleLinear,
   scaleDiverging,
-
  } from 'd3';
 import { xValue, yValue, colorValue } from './accessors';
 import { innerWidth, innerHeight, margin } from './chartParameters';
@@ -20,6 +19,7 @@ import { innerWidth, innerHeight, margin } from './chartParameters';
 import { makeDivergingLegend} from './legendDiverging'
 
 import { marks } from './marks';
+import { getMapData } from './getMapData'
 import { parseData } from './parseData';
 // import { tooltip } from './tooltip';
 import { buildXAxis } from './xAxis';
@@ -37,7 +37,7 @@ import { buildYAxis } from './yAxis';
 
 let dataset;
 // Datset source
-const dataUrl = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json';
+const dataUrl = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json';
 
 // Fetch Dataset & Render Marks
 json(dataUrl).then(data => {
@@ -49,6 +49,10 @@ json(dataUrl).then(data => {
 
   //Console out something interesting
   // console.log(innerHeight);
+
+  // get counties data for map
+  let mapData = getMapData();
+  console.log(mapData);
 
   // Calc xMin xMax yMin yMax (or extent)
   const xMin = min(dataset, xValue);
