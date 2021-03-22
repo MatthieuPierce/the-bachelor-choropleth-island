@@ -33,8 +33,8 @@ module.exports = {
         /fcc-bundle\.js/
       ],
       use: {
-        // babel-loader configs at .babelrc or babel.config.js
         loader: 'babel-loader',
+        // babel-loader config options here, OR at .babelrc or babel.config.js
       }
     },
     {
