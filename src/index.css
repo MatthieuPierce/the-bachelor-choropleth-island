@@ -5,7 +5,7 @@
   --secondary-color: hsla(0, 0%, 98%, 1);
   --tertiary-color: #d2d3d5;
   --hot-color: #d14124;
-  --no-doping-color: #20aa3f;
+  --cool-color: #20aa3f;
   --mark-stroke-color: var(--secondary-color);
   --line-stroke-color: var(--primary-color);
   --bg-color: hsla(0, 0%, 98%, 1);
@@ -101,271 +101,38 @@ text {
   display: grid;
   place-items: center;
   place-content: center;
-  background-color: var(--secondary-color);
-  border-radius: 100%;
+  /* background-color: var(--secondary-color); */
+  background-color: hsla(0, 0%, 98%, 0.2);
+
+  backdrop-filter: blur(15px);
+  border-radius: 5px;
   box-sizing: border-box;
-  padding: 10px 0;
+  padding: 0.5rem;
   text-align: center;
-  filter: drop-shadow(1rem 1rem 0.5rem hsla(210, 33%, 9%, 0.5));
+  /* filter: drop-shadow(1rem 1rem 0.5rem hsla(210, 33%, 9%, 0.5)); */
   font-size: 0.8rem;
-  height: 90px;
-  width: 90px;
-  border-color: var(--tertiary-color);
+  /* height: 90px; */
+  /* width: 90px; */
+  border-color: var(--secondary-color);
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px; 
 
 }
 
 #tooltip p {
   box-sizing: border-box;
   margin: 0;
-  padding: 0 15px; 
+  /* padding: 0 15px;  */
 }
 
-#tooltip p.doping {
-  color: var(--doping-color);
-  margin: 0.2rem 0 0 0;
-
-}
-
-#tooltip p.no-doping {
-  color: var(--no-doping-color);
-  margin: 0.2rem 0 0 0;
+#tooltip p.cool {
+  color: var(--cool-color);
+  /* margin: 0.2rem 0 0 0; */
 
 }
 
+#tooltip p.hot {
+  color: var(--hot-color);
+  /* margin: 0.2rem 0 0 0; */
 
-/* Rather on-the-nose animated planet-cooking background effect */
-
-@keyframes changeBgParent {
-  0% {background-image:
-     linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 5%, transparent 15%, hsla(195, 53%, 79%, 1) 100%),
-     linear-gradient(0deg, hsla(0, 100%, 50%, 0.05) 0% 7%, transparent 30%, hsla(195, 53%, 79%, 0) 100%)
-     ;}
-  
-  10% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.15) 0% 5%, transparent 20%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.07) 0% 10%, transparent 31%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  15% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.15) 0% 7%, transparent 25%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 32%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  20% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 30%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 33%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  25% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 35%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 34%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  30% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 40%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 35%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  35% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 45%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 36%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  40% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 50%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 37%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-  
-  45% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 55%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 38%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-  50% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 60%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 39%, hsla(195, 53%, 79%, 1) 100%)
-    ;}
-  55% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 65%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 40%, hsla(195, 53%, 79%, 1) 100%)
-    ;}
-  
-  60% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 70%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 41%, hsla(195, 53%, 79%, 1) 100%)
-    ;}
-  65% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 75%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 42%, hsla(195, 53%, 79%, 1) 100%)
-    ;}
-  70% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 80%, hsla(195, 53%, 79%, 1) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 43%, hsla(195, 53%, 79%, 1) 100%)
-    ;}
-  75% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 85%, hsla(195, 53%, 79%, 0.9) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 44%, hsla(195, 53%, 79%, 0.9) 100%)
-    ;}
-  80% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 90%, hsla(195, 53%, 79%, 0.8) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 45%, hsla(195, 53%, 79%, 0.8) 100%)
-    ;}
-  85% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 95%, hsla(195, 53%, 79%, 0.7) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 46%, hsla(195, 53%, 79%, 0.7) 100%)
-    ;}
-  90% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 98%, hsla(195, 53%, 79%, 0.6) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 47%, hsla(195, 53%, 79%, 0.6) 100%)
-    ;}  
-  95% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 100%, hsla(195, 53%, 79%, 0.5) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 48%, hsla(195, 53%, 79%, 0.5) 100%)
-  ;}  
-  100% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 100%, hsla(195, 53%, 79%, 0.4) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 49%, hsla(195, 53%, 79%, 0.4) 100%)
-  ;}  
-}
-
-@keyframes changeBgPseudo {
-  0% {background-image:
-     linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 5%, transparent 15%, hsla(195, 53%, 79%, 1) 100%),
-     linear-gradient(0deg, hsla(0, 100%, 50%, 0.05) 0% 7%, transparent 30%, hsla(195, 53%, 79%, 0) 100%)
-     ;}
-  
-  10% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.15) 0% 5%, transparent 20%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.07) 0% 10%, transparent 31%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  15% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.15) 0% 7%, transparent 25%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 32%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  20% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 30%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 33%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  25% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 35%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 34%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  30% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 40%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 35%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  35% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 45%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 36%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-
-  40% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 50%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 37%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-  
-  45% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 55%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 38%, hsla(195, 53%, 79%, 1) 100%)
-  ;}
-  50% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 60%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 39%, hsla(195, 53%, 79%, 1) 100%)
-    ;}
-  55% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 65%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 40%, hsla(195, 53%, 79%, 1) 100%)
-    ;}
-  
-  60% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 70%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 41%, hsla(195, 53%, 79%, 1) 100%)
-    ;}
-  65% {background-image: 
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 75%, hsla(195, 53%, 79%, 1) 100%),
-    linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 42%, hsla(195, 53%, 79%, 1) 100%)
-    ;}
-  70% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 80%, hsla(195, 53%, 79%, 1) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 43%, hsla(195, 53%, 79%, 1) 100%)
-    ;}
-  75% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 85%, hsla(195, 53%, 79%, 0.9) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 44%, hsla(195, 53%, 79%, 0.9) 100%)
-    ;}
-  80% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 90%, hsla(195, 53%, 79%, 0.8) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 45%, hsla(195, 53%, 79%, 0.8) 100%)
-    ;}
-  85% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 95%, hsla(195, 53%, 79%, 0.7) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 46%, hsla(195, 53%, 79%, 0.7) 100%)
-    ;}
-  90% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 98%, hsla(195, 53%, 79%, 0.6) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 47%, hsla(195, 53%, 79%, 0.6) 100%)
-    ;}  
-  95% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 100%, hsla(195, 53%, 79%, 0.5) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 48%, hsla(195, 53%, 79%, 0.5) 100%)
-  ;}  
-  100% {
-    background-image: 
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.2) 0% 10%, transparent 100%, hsla(195, 53%, 79%, 0.4) 100%),
-      linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 15%, transparent 49%, hsla(195, 53%, 79%, 0.4) 100%)
-  ;}  
-}
-
-@keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-  }
-
-#container::before {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  background-size: cover;
-  content: "";
-  animation: changeBgPseudo 120s infinite alternate, fadeIn linear 6s infinite alternate;
-  background-image:
-     linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 5%, transparent 15%, hsla(195, 53%, 79%, 1) 100%),
-     linear-gradient(0deg, hsla(0, 100%, 50%, 0.05) 0% 7%, transparent 30%, hsla(195, 53%, 79%, 0) 100%)
-     ;
-}
-
-#container::after {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  background-size: cover;
-  content: "";
-  animation: changeBgPseudo 120s 6s infinite alternate, fadeIn linear 6s infinite alternate-reverse;
-  background-image:
-     linear-gradient(0deg, hsla(0, 100%, 50%, 0.1) 0% 5%, transparent 15%, hsla(195, 53%, 79%, 1) 100%),
-     linear-gradient(0deg, hsla(0, 100%, 50%, 0.05) 0% 7%, transparent 30%, hsla(195, 53%, 79%, 0) 100%)
-     ;
 }

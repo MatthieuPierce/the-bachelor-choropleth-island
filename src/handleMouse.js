@@ -35,13 +35,13 @@ export const handleMouseOver = (event, d, dataMap) => {
     .style("top",
       `${clamp(
         0,
-        event.offsetY - tooltipDimensions.height,
+        event.offsetY - tooltipDimensions.height - 2,
         chartDimensions.height - tooltipDimensions.height - 2
       )}px`)
     .style("left",
       `${clamp(
         margin.left,
-        event.offsetX + 1,
+        event.offsetX + 2,
         chartDimensions.width - tooltipDimensions.width - 2
       )}px`)
     .style("z-index", 20)
@@ -69,8 +69,8 @@ export const handleMouseOut = (event, d) => {
     ;
 
   tooltip
-    .transition()
-    .duration(300)
+    // .transition()
+    // .duration(1)
     .style("opacity", 0)
     .attr("visibility", "hidden")
     .style("z-index", -1)
