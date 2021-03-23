@@ -5,11 +5,6 @@ import {
   geoPath,
   interpolateRdBu,
   interpolateBuGn,
-  invert,
-  select, 
-  scaleTime,
-  scaleOrdinal,
-  scaleBand, 
   json, 
   min, 
   max,
@@ -22,7 +17,7 @@ import {
 import { xValue, yValue, colorValue } from './accessors';
 import { innerWidth, innerHeight, margin, chart } from './chartParameters';
 // import { makeCategoricalLegend } from './legendCategorical';
-import { makeDivergingLegend} from './legendDiverging'
+import { makeSequentialLegend } from './legendSequential'
 import { marks } from './marks';
 import { getMapData } from './getMapData'
 import { parseData } from './parseData';
@@ -88,34 +83,7 @@ let asyncWrapper = async () => {
     console.log("wholeMap")
     console.log(wholeMap);
 
-    // create new map-based iterator for calculation
-    let mapValues = wholeMap.values()
-  
-    // Calc xMin xMax yMin yMax (or extent)
-    const xMin = min(dataset, xValue);
-    const xMax = max(dataset, xValue);
-    const yMin = min(dataset, yValue);
-    const yMax = max(dataset, yValue);
-    const cMin = min(dataset, colorValue);
-    const cMax = max(dataset, colorValue)
 
-    // xScale
-    // const xScale = scaleTime()
-    // .domain([xMin, xMax])
-    // .range([0, innerWidth]);
-    
-    // // xBand (for calculating mark width if xScale nonordinal, linear, time, etc)
-    // const xBand = scaleBand()
-    //   .domain(dataset.map(xValue))
-    //   .range([0, innerWidth])
-    //   .paddingInner(0)
-    //   .paddingOuter(0);
-
-    // // yScale
-    // const yScale = scaleBand()
-    //   .domain(dataset.map(yValue))
-    //   .range([0, innerHeight])
-    //   // .nice();
 
     // colorScale
     const colorScale = scaleSequential(interpolateBuGn)
@@ -154,17 +122,8 @@ let asyncWrapper = async () => {
 
     // Tooltip -- from tooltip.js)
 
-    // Categorical Color Legend -- from legendCategorical.js
-    // makeCategoricalLegend( 
-    //   colorKeys, 
-    //   colorScale, 
-    //   );
-
-    // Diverging Color Legend (mini-chart) from legendDiverging.js
-    // makeDivergingLegend(
-    //   dataset,
-    //   colorScale
-    // );
+    // Sequential legend -- from legendSequential
+    makeSequentialLegend(dataset, colorScale);
 
     // Marks (circles) -- from marks.js
     // marks(

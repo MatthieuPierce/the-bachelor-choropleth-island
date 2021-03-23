@@ -4,15 +4,14 @@ import { select } from 'd3';
 export const padding = 10;
 
 export const margin = {
-  top: padding,
-  right: padding,
-  bottom: padding - 9,
+  top: padding + 10,
+  right: padding - 10,
+  bottom: padding - 10,
   left: padding
 };
-// let width = 500;
-// let height = 281.25;
-let width = 950;
-let height = 700;
+
+let width = 1000;
+let height = 650;
 export const innerWidth = width - margin.left - margin.right;
 export const innerHeight = height - margin.top - margin.bottom;
 
