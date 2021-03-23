@@ -5,11 +5,10 @@ import { tooltip } from './tooltip';
 import { margin } from './chartParameters';
 
 // Handle mouseOver/focus on marks
-export const handleMouseOver = (event, d, dataMap) => {
+export const handleMouseOver = (event, d, dataMap, val) => {
 
   // Style currently-focused mark
-  select(event.currentTarget)
-    .attr("data-education", d => dataMap.get(d.id).data.bachelorsOrHigher) 
+  select(event.currentTarget) 
     .attr("stroke-width", "2")
     .attr("stroke", "var(--hot-color)")
     .attr("filter", "url(#svgFilter)")
@@ -21,8 +20,11 @@ export const handleMouseOver = (event, d, dataMap) => {
           <p>${dataMap.get(d.id).data.area_name}, ${dataMap.get(d.id).data.state}</p>
           <p>${dataMap.get(d.id).data.bachelorsOrHigher}%</p>
         `)
-        
     }
+  tooltip
+    .attr("visibility", "visible")
+    .attr("data-education", val)
+    .style("display", "grid")
 
   // Position and transition tooltip
   let tooltipDimensions = document.querySelector("#tooltip")
@@ -31,17 +33,19 @@ export const handleMouseOver = (event, d, dataMap) => {
     .getBoundingClientRect(); 
   
   tooltip
-    .attr("visibility", "visible")
+    // .attr("visibility", "visible")
+    // .attr("data-education", val)
+    // .style("display", "grid")
     .style("top",
       `${clamp(
         0,
-        event.offsetY - tooltipDimensions.height - 2,
+        event.offsetY - tooltipDimensions.height - 5,
         chartDimensions.height - tooltipDimensions.height - 2
       )}px`)
     .style("left",
       `${clamp(
         margin.left,
-        event.offsetX + 2,
+        event.offsetX + 5,
         chartDimensions.width - tooltipDimensions.width - 2
       )}px`)
     .style("z-index", 20)
@@ -65,7 +69,6 @@ export const handleMouseOut = (event, d) => {
     .attr("stroke-width", 0.2)
     .attr("filter", null)
     // .attr("transform", null)
-
     ;
 
   tooltip
@@ -74,6 +77,7 @@ export const handleMouseOut = (event, d) => {
     .style("opacity", 0)
     .attr("visibility", "hidden")
     .style("z-index", -1)
+    .style("display", "none")
     .attr("data-education", null) 
 
 }

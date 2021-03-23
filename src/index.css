@@ -8,6 +8,7 @@
   --cool-color: #20aa3f;
   --mark-stroke-color: var(--secondary-color);
   --line-stroke-color: var(--primary-color);
+  --primary-color-fade: hsla(210, 33%, 9%, 0.2);
   /* --bg-color: hsla(0, 0%, 98%, 1); */
 }
 
@@ -55,16 +56,25 @@ h1 {
   font-size: 2rem;
   padding: 0 0.5rem;
   margin: 1rem;
-  background: linear-gradient(10deg, darkgreen, orange 60%, purple);
+  background: linear-gradient(45deg, darkgreen, orange 30%, magenta);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  width: 100%;
+
 }
 
 h2 {
   font-size: 1.5rem;
   padding: 0 0.5rem;
   margin: 1rem;
+  background: linear-gradient(
+    250deg, darkgreen 40%, orange 90%, magenta);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  width: 100%;
+
 }
 
 text {
@@ -110,9 +120,9 @@ text {
   font-size: 0.8rem;
   /* height: 90px; */
   /* width: 90px; */
-  border-color: var(--secondary-color);
+  border-color: var(--primary-color-fade);
   border-style: solid;
-  border-width: 2px; 
+  border-width: 1px; 
 
 }
 

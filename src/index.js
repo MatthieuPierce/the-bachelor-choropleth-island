@@ -45,8 +45,8 @@ let asyncWrapper = async () => {
 
   // Get topology data (expect TopoJSON) for map
   let mapData = await getMapData().then(resp => resp.json());
-  // console.log("mapData")
-  // console.log(mapData);
+  console.log("mapData")
+  console.log(mapData);
 
   // // Map projection for lower 48 by county
   // let projection = geoAlbersUsa();
@@ -58,8 +58,19 @@ let asyncWrapper = async () => {
   // Returns the GeoJSON Feature or FeatureCollection for the specified object
   // in the given topology. 
   let features = feature(mapData, mapData.objects.counties).features;
-  console.log("features:")
-  console.log(features);
+
+  // state path, simplified with topojson.mesh, which takes
+  // (topology, object, filter)
+  let states = mesh(
+    mapData, 
+    mapData.objects.states, 
+    (a, b) => a !== b)
+
+  // nation path
+  let nation = feature(
+    mapData, 
+    mapData.objects.nation);
+
 
   // Fetch Dataset & Render Marks
   json(dataUrl).then(data => {
@@ -67,21 +78,19 @@ let asyncWrapper = async () => {
     // Parse dataset function in parseData.js
     dataset = parseData(data);
     // Console out parsed dataset for examination
-    console.log("dataset")
-    console.log(dataset);
+    // console.log("dataset")
+    // console.log(dataset);
 
     // create map between mapData features and dataset values
-
     let wholeMap = new Map()
-
     features.forEach(e => {
       wholeMap.set(e.id, {
         feature: e,
         data: dataset.filter(d => d.fips === e.id)[0],
       })
     });
-    console.log("wholeMap")
-    console.log(wholeMap);
+    // console.log("wholeMap")
+    // console.log(wholeMap);
 
 
 
@@ -96,8 +105,8 @@ let asyncWrapper = async () => {
       return wholeMap.get(identity).data.bachelorsOrHigher
     };
 
-    // Map marks
-    chart.selectAll("path")
+    // Map marks with choropleth effect -- county
+    chart.selectAll("path .county")
     .data(features)
     .enter()
     .append("path")
@@ -105,13 +114,38 @@ let asyncWrapper = async () => {
       .attr("d", d => path(d))
       .attr("fill", d => colorScale(colorMapValue(d)))
       .attr("data-fips", d => wholeMap.get(d.id).data.fips)
-      .attr("data-education", colorMapValue)
+      .attr("data-education", d => colorMapValue(d))
+      .attr("stroke", "transparent")
       .attr("stroke", "var(--secondary-color)")
       .attr("stroke-width", 0.2)
       .attr("stroke-linejoin", "round")
-      .on("mouseover pointerover focus", (e, d, map) => handleMouseOver(e, d, wholeMap))
+      .on("mouseover pointerover focus", (e, d, map, val) => handleMouseOver(e, d, wholeMap, colorMapValue(d)))
       .on("mouseout pounterout pointerleave", handleMouseOut)
     ;
+
+    // state path mesh version
+    chart.append("path")
+      .datum(states)
+      .attr("id", "states-path")
+      .attr("d", path)
+      .attr("class", "state")
+      .attr("d", d => path(d))
+      .attr("stroke", "var(--primary-color)")
+      .attr("fill", "none")
+      .attr("stroke-width", 0.3)
+      .attr("stroke-linejoin", "round")
+    
+    // nation path (single feature so datum used)
+    chart.append("path")
+    .datum(nation)
+    .attr("id", "nation-path")
+    .attr("d", path)
+    .attr("class", "state")
+    .attr("d", d => path(d))
+    .attr("stroke", "var(--primary-color)")
+    .attr("fill", "none")
+    .attr("stroke-width", 0.1)
+    .attr("stroke-linejoin", "round")
 
     // Add style SVG filter for use in tooltip hover
     chart.append("filter")
