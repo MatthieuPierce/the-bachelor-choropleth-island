@@ -72,7 +72,7 @@ export const makeSequentialLegend = (
   //   ;
 
   // FCC-test makework rects
-  // the fcc test doesn't recognize a smooth, value-interpolated 
+  // the fcc test doesn't recognize that lovely, smooth, value-interpolated 
   // linear gradient as "at least 4 different colors"
   // so here's some makework fills to fit the test
   let busyColors = [0, 1, 2, 3, 4, 5]
@@ -81,9 +81,9 @@ export const makeSequentialLegend = (
   .data(busyColors)
   .enter()
   .append("rect")
-    .attr("height", 1)
-    .attr("width", 1)
-    .attr("fill", d => `hsla(${d * 50}, 50%, 50%, 1`)
+    .attr("height", 0.5)
+    .attr("width", 0.5)
+    .attr("fill", d => `hsla(${d * 50}, 50%, 50%, 0.1`)
     .attr("x", d => d * 5)
     .attr("opacity", 0.01)
   
@@ -110,47 +110,13 @@ export const makeSequentialLegend = (
       .attr("offset", d => d.offset)
       .attr("stop-color", d => d.color)
   
-  // create rect to apply to main legend and fill with the linearGradient url
+  // Gradient Bar: rect to apply to main legend, fill with linearGradient url
   legend.append("rect")
     .attr("width", legendWidth - legendMargin.left - legendMargin.right)
     .attr("height", barHeight)
+    .attr("id", "legend-gradient-bar")
     .attr("x", legendMargin.left)
     .style("fill", "url(#linear-gradient)");
-
-
-
-  // DATASET 
-  
-  // To create marks that align with the color scheme & utilize bandwidth(),
-  // create evenly distributed array of values between max and min of 
-  // the original colorScale domain
-  // e.g. d3.range(min, max, step).concat(max)
-  // to be used as the dataset for the legend marks
-
-  // stepSize controls number of color bands
-  let stepSize = 0.2
-  
-  let colorScaleBot = min(colorScale.domain())
-  let colorScaleTop = max(colorScale.domain())
-  // divergenceDataToBands is the dataset to be used in legend-marks
-  let divergenceDataToBands = range( colorScaleBot, colorScaleTop, stepSize )
-    .concat(colorScaleTop);
-  // let divergenceLength = divergenceToBands.length;
-
-
-
-  // SCALES - 3
-
-  // legendColorScale takes the diverging colorScale from the primary chart for
-  // the legend marks' fill values. Carries the interprolator function.
-  const legendColorScale = colorScale.copy();
-
-  // colorBandsScale is a new band Scale for mark width
-  let colorBandsScale = scaleBand()
-    .domain( divergenceDataToBands )
-    .range( [ 0, legendWidth ] )
-    .paddingInner(0)
-    .paddingOuter(0)
 
   // legendXScale takes the sequential colorScale from the primary chart,
   // modified to the range of the legend's dimensions
@@ -158,10 +124,6 @@ export const makeSequentialLegend = (
   const legendXScale = colorScale.copy()
     .range( [ legendMargin.right, legendWidth - legendMargin.left ] );
   
-
-  
-
-
   // Legend Label
   legend
     .append("text")

@@ -3,36 +3,24 @@ import {
   extent,
   geoAlbersUsa,
   geoPath,
-  interpolateRdBu,
   interpolateBuGn,
   json, 
-  min, 
-  max,
-  scaleLinear,
-  scaleDiverging,
   scaleSequential,
  } from 'd3';
  import { feature, mesh } from 'topojson-client';
 
-import { xValue, yValue, colorValue } from './accessors';
-import { innerWidth, innerHeight, margin, chart } from './chartParameters';
-// import { makeCategoricalLegend } from './legendCategorical';
+import { colorValue } from './accessors';
+import { chart } from './chartParameters';
 import { makeSequentialLegend } from './legendSequential'
-import { marks } from './marks';
 import { getMapData } from './getMapData'
 import { parseData } from './parseData';
-// import { tooltip } from './tooltip';
-import { buildXAxis } from './xAxis';
-import { buildYAxis } from './yAxis';
 import { handleMouseOver, handleMouseOut } from './handleMouse';
 
 // NON-CODE PLANNING: CHART OBJECTIVES
-// Global temperatures over month (y-axis)
-// vs over years; (x-axis)
-// color scale to indicate temperature (c-axis)
-// tooltip with data-year property (optional: temperature etc)
-//
-//  
+// United States map (states only), subdivided into counties (s-axis)
+// color scale to indicate % of educational attaiment (bachelor's deg) (c-axis)
+// tooltip with data-education property
+// nation and state paths for clarity
 
 // Chart basic construction & layout parameters in chartParameters.js
 
@@ -71,7 +59,6 @@ let asyncWrapper = async () => {
     mapData, 
     mapData.objects.nation);
 
-
   // Fetch Dataset & Render Marks
   json(dataUrl).then(data => {
 
@@ -89,10 +76,6 @@ let asyncWrapper = async () => {
         data: dataset.filter(d => d.fips === e.id)[0],
       })
     });
-    // console.log("wholeMap")
-    // console.log(wholeMap);
-
-
 
     // colorScale
     const colorScale = scaleSequential(interpolateBuGn)
