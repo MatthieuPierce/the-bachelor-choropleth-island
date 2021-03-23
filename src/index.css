@@ -4,7 +4,7 @@
   --primary-color: 	hsl(210, 33%, 9%);
   --secondary-color: hsla(0, 0%, 98%, 1);
   --tertiary-color: #d2d3d5;
-  --doping-color: #d14124;
+  --hot-color: #d14124;
   --no-doping-color: #20aa3f;
   --mark-stroke-color: var(--secondary-color);
   --line-stroke-color: var(--primary-color);
@@ -81,7 +81,7 @@ text {
   overflow: hidden;
   padding: 0;
   /* padding-bottom calc trick for resizing svg: 100% * height / width ratio */
-  padding-bottom: calc(100% * 9 / 16);
+  padding-bottom: calc(100% * 7 / 9.5);
   position: relative;
   vertical-align: top;
   width: 100%;

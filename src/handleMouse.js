@@ -5,31 +5,24 @@ import { tooltip } from './tooltip';
 import { margin } from './chartParameters';
 
 // Handle mouseOver/focus on marks
-export const handleMouseOver = (event, d) => {
+export const handleMouseOver = (event, d, dataMap) => {
 
   // Style currently-focused mark
   select(event.currentTarget)
-    .attr("stroke-width", "1")
-    .attr("stroke", "var(--primary-color)")
+    .attr("data-education", d => dataMap.get(d.id).data.bachelorsOrHigher) 
+    .attr("stroke-width", "2")
+    .attr("stroke", "var(--hot-color)")
+    .attr("filter", "url(#svgFilter)")
     // .attr("opacity", 1)
 
     if (event.currentTarget.className.baseVal !== `legend-mark`) {
-  // Change tooltip message depending on whether d variance is positive
-  if (d.variance > 0 ) {
     tooltip
       .html(`
-          <p>${d.monthStringShort} ${d.year}</p>
-          <p><strong>${d.tempString}</strong></p>
-          <p class="hotter">${d.varianceString}</p>
+          <p>${dataMap.get(d.id).data.area_name}, ${dataMap.get(d.id).data.state}</p>
+          <p>${dataMap.get(d.id).data.bachelorsOrHigher}%</p>
         `)
-  } else {
-    tooltip
-      .html(`
-      <p>${d.monthStringShort} ${d.year}</p>
-      <p><strong>${d.tempString}</strong></p>
-      <p class="cooler">${d.varianceString}</p>
-        `)
-  }
+        
+    }
 
   // Position and transition tooltip
   let tooltipDimensions = document.querySelector("#tooltip")
@@ -51,12 +44,11 @@ export const handleMouseOver = (event, d) => {
         event.offsetX + 1,
         chartDimensions.width - tooltipDimensions.width - 2
       )}px`)
-    .attr("data-year", xValue(d).getFullYear())
     .style("z-index", 20)
     .transition()
     .duration(50)
     .style("opacity", 1)
-      }
+      
     // Only act on tooltip if mark class is not "legend-mark";
   // previously encased all tooltip activity above, had to be 
   // depreciated just to affecting opacity due to fcc-test constraints
@@ -70,16 +62,18 @@ export const handleMouseOut = (event, d) => {
   select(event.currentTarget)
     .attr("opacity", 1)
     .attr("stroke", null)
-    .attr("stroke-width", null)
+    .attr("stroke-width", 0.2)
+    .attr("filter", null)
     // .attr("transform", null)
 
     ;
 
   tooltip
-    .attr("data-year", null)
     .transition()
     .duration(300)
     .style("opacity", 0)
     .attr("visibility", "hidden")
     .style("z-index", -1)
+    .attr("data-education", null) 
+
 }
